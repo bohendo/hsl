@@ -20,6 +20,9 @@
 - Sample: the head of a core's payload. Frequently pinned before calling core arms
 - Context: the tail of a core's payload. Frequently store the old subject
 - Bunt: default value; eg the bunt of a string is "" and that of a number is 0
+- Gate: a door with a single arm called $
+- Trap: the single $ arm of a gate
+- Kick: to execute a trap immediately after declaring it
 
 ## Runes
 
@@ -31,12 +34,21 @@
 
 - `%=`: `(wing [(sub-wing new-value), ...] ==)`; replaces a series of sub-wings with new-values under the given wing
 - `%~`: `(arm door sample)`; run the arm of the given door after substituting the given sample
+- `%-`: `(gate sample)`; evaluate the $ arm of a gate providing the given sample
 
 - `|%`: `( [(++ face code), ...] --)`; declare a core
-- `|_`: `(face=type [(++ term code), ...] --)`: pins the face bunt to the head of the payload before creating a core
+- `|_`: `(face=type [(++ term code), ...] --)`; declare a door; pins the face bunt to the head of the payload before creating a door
+- `|=`: `(face=type code)`; declare a gate; pins the face bunt to the head of the payload before creating a gate defined by the given code
+- `|:`: `(type code)`; resets the default sample; infers the type of the given type and sets it as the sample for the given code
+- `|.`: `(code)`; declare a gate; does not mess with the payload, just sets the given code to the core's battery
+- `|-`: `(code)`; declare a gate and immediately run it's arm (build a trap and kick it)
 
 - `++`: `(face code)`; declare an arm (code) on the parent core pinned at the given face
 - `--`: `()`; terminates a series of eg arm declarations
 
 - `^-`: `(type code); cast the result of running given code to the given type
-- `^=`: `(face value)`: pins the given value to the given face
+- `^=`: `(face value)`; pins the given value to the given face
+
+- `$?`: `(type, type, ..., ==)`; create a type from a union of other types
+
+- `?:`: `(if then else)`; run the "then" code if the "if" code returns %.y otherwise run the "else" code

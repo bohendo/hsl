@@ -135,18 +135,10 @@ $
   counter  .+  counter
   ==
 
-:: Q15 (TODO)
+:: Q15
 
-=/  decrement
-|_  n=@ud
-++  $
-  |=  counter=@ud
-  ^-  @ud
-  (add (mul a (mul x x)) (add (mul b x) c))
---
-~($ quadratic [3 2 1])
-
-=/  n  5
+|=  n=@ud
+^-  @ud
 =/  counter  0
 |-
   ?:  .=  n  .+  counter
@@ -155,9 +147,24 @@ $
   counter  .+  counter
   ==
 
-
 :: Q16
 
+=/  n  5
+=/  fact  1
+|-
+  ?:  =(n 0)
+    fact
+  %=  $
+  n  (sub n 1)
+  fact  (mul fact n)
+  ==
+
 :: Q17
+
+|=  n=@ud
+^-  @ud
+?:  (lte n 1)
+  1
+(mul n $(n (sub n 1)))
 
 :: Q18

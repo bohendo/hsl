@@ -30,6 +30,7 @@
   =/  x3  (~(rad og x2) 13)
   [[(get-card x1) (get-card x2)] (get-card x3)]
 
+:: gets a card term by index
 ++  get-card
   |=  index=@ud
   ^-  card
@@ -104,7 +105,7 @@
       &((hand-is-pair-of my-hand %n2) (lte (card-value dealer) 7))
     ==
 
-:: returns %.y if the user should split given the game state
+:: returns %.y if the user should double-down given the game state
 ++  should-double
   |=  [my-state=state]
   ^-  @f
@@ -139,13 +140,13 @@
   ^-  @f
   =(rc.my-hand lc.my-hand)
 
-:: returns %.y if my-hand includes one of my-cards else returns %.n
+:: returns %.y iff my-hand includes one of my-cards
 ++  hand-includes
   |=  [my-hand=hand my-card=card]
   ^-  @f
   |(=(rc.my-hand my-card) =(lc.my-hand my-card))
 
-:: returns %.y if my-hand includes the two given cards in either order
+:: returns %.y iff my-hand includes the two given cards in either order
 ++  hand-is
   |=  [my-hand=hand card1=card card2=card]
   ^-  @f
@@ -154,7 +155,7 @@
     &(=(lc.my-hand card2) =(rc.my-hand card1))
   ==
 
-:: INCLUSIVE between, returns %.y if x is n, m, or between n and m
+:: inclusive between, returns %.y if x is n, m, or between n and m
 ++  between
   |=  [x=@ud n=@ud m=@ud]
   ^-  @f

@@ -53,7 +53,6 @@ else
   echo "~zod:dojo> |mount %base" # generic boilerplate (like what you get after `git init`)
   echo "~zod:dojo> |mount %garden" # this desk serves landscape so the server I guess?
   echo "~zod:dojo> |mount %landscape" # landscape gui I think
-  echo "~zod:dojo> |mount %bitcoin" # bitcoin wallet app
   echo "~zod:dojo> |mount %webterm" # in-browser dojo terminal app
   echo "~zod:dojo> |exit"
   echo "Then, re-run this script to start a fresh zod ship from the generated fresh"

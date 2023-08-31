@@ -10,16 +10,14 @@ Introducing: `bj-trainer.hoon`, your first step in learning how to beat the hous
 To get started, first install the `bj-trainer` generator like so:
 
 ```bash
-# Earth
-git clone git@github.com:bohendo/hsl.git
-cp -LR hsl/bj-trainer.hoon ~/path-to-zod/base/gen/
+$ git clone git@github.com:bohendo/hsl.git
+$ cp hsl/bj-trainer.hoon ~/path-to/zod/base/gen/
 ```
 
 Then, from your dojo, run:
 
 ```bash
-# Mars
-|commit %base
+> |commit %base
 ```
 
 You might have seen [the charts](https://betandbeat.com/wp-content/uploads/2020/11/blackjack-basic-strategy-chart-1365x2048.png), but casinos don't take kindly to you bringing in cheat sheets so you'll need to know the optimal first move by heart. That's where `bj-trainer` comes in. This app will train your first move of blackjack until it's at the peak of mathematical efficiency.

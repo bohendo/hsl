@@ -1,26 +1,36 @@
 !:
-=/  answer  ,$(%correct %wrong)
-=/  card  ,$(%2 %3 %4 %5 %6 %7 %8 %9 %10 %J %Q %K %A)
-=/  move  ,$(%stand %hit %double %split)
-|=  [myMove=move myHand=[card card] dealer=card]
-=<
-:-  checkMove  [myMove myHand dealer]
-    nextHand
-::
-|%
-:: returns a new pair of my hand cards + a new face-up card for the
-++  nextHand
-  ^-  [myHand=[card card] dealer=card]
-  [myHand=[%A %3] dealer=%7]
 
-:: returns an answer depending on whether myMove is optimal
-++  checkMove
-  |=  [myHand=[card card] dealer=card]
-  ^-  `answer
+:: define types
+=/  answer  ?(%correct %wrong)
+=/  card  ?(%n2 %n3 %n4 %n5 %n6 %n7 %n8 %n9 %n10 %j %q %k %a)
+=/  move  ?(%stand %hit %double %split)
+=/  table-state  ,[my-hand=[card card] dealer=card]
+=/  table-action  ,[my-move=move my-state=table-state]
+
+:: declare entry gate
+|=  my-action=table-action
+
+:: define entry action
+=<
+:-  (check-move my-action)
+    (next-hand)
+:: declare main core
+|%
+
+:: return a new random table state
+++  next-hand
+  ^-  table-state
+  [my-hand=[%a %n3] dealer=%n7] :: guaranteed random, chosen with fair dice
+
+:: returns an answer depending on whether my-move is optimal
+++  check-move
+  |=  table-action
+  ^-  (unit answer)
   [~ %correct]
 
 :: returns an answer unit
-++  checkStand
-  |=  [myHand=[card card] dealer=card]
-  ^-  `answer
+++  check-stand
+  |=  table-state
+  ^-  (unit answer)
   [~ %correct]
+--
